@@ -16,6 +16,11 @@ interface IState {
  * It renders title, button and Graph react element.
  */
 class App extends Component<{}, IState> {
+  state: {
+
+    data: never[]; showGraph: boolean;
+  };
+  setState: any;
   constructor(props: {}) {
     super(props);
 
@@ -41,18 +46,18 @@ class App extends Component<{}, IState> {
    */
   getDataFromServer() {
     let x = 0;
-    const interval = setInterval(()) => {
+    const interval = setInterval(() => {
       DataStreamer.getData((serverResponds: ServerRespond[]) => {
-        this.setState{
+        this.setState({
         data: serverResponds,
         showGraph: true,
       });
     });
     x++;
-    if(x > 1000){
+    if (x > 1000) {
       clearInterval(interval);
     }
-  },100);
+  }, 100);
 }
 
 
